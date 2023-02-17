@@ -49,16 +49,20 @@ jobs:
           body: Release ${{ github.run_number }}
           prerelease: false
       - name: Upload Release Asset
-        id: upload-release-asset_ios
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        uses: actions/upload-artifact@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/ios/iphoneos/Runner.app
-          asset_name: Runner.app
-          asset_content_type: application/vnd.iphone
-          prerelease: false
+          name: Runner.app
+          path: ./build/ios/iphoneos/Runner.app
+        # id: upload-release-asset_ios
+        # uses: actions/upload-release-asset@v1
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        # with:
+        #   upload_url: ${{ steps.create_release.outputs.upload_url }}
+        #   asset_path: ./build/ios/iphoneos/Runner.app
+        #   asset_name: Runner.app
+        #   asset_content_type: application/vnd.iphone
+        #   prerelease: false
 
   build_apk:
     name: Build Flutter (Android)
@@ -86,13 +90,15 @@ jobs:
           body: Release ${{ github.run_number }}
           prerelease: false
       - name: Upload Release Asset
-        id: upload-release-asset_android
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        uses: actions/upload-artifact@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/app/outputs/apk/release/app-release.apk
-          asset_name: app-release.apk
-          asset_content_type: application/vnd.android.package-archive
-          prerelease: false
+          name: app-release.apk
+          path: ./build/app/outputs/apk/release/app-release.apk
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        # with:
+        #   upload_url: ${{ steps.create_release.outputs.upload_url }}
+        #   asset_path: ./build/app/outputs/apk/release/app-release.apk
+        #   asset_name: app-release.apk
+        #   asset_content_type: application/vnd.android.package-archive
+        #   prerelease: false
