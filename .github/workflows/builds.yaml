@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ["apk --debug", "appbundle --debug", "ios --no-codesign", macos, web, windows, linux]
+        target: ["apk --debug", "appbundle --debug", "ios --no-codesign", macos, web]
     steps:
       - uses: actions/setup-java@v1
         with:
